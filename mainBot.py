@@ -3,10 +3,10 @@
 
 # Import required packages
 from selenium import webdriver
-#from selenium.webdriver.support.ui import WebDriverWait
-#from selenium.webdriver.support import expected_conditions as EC
-#from selenium.webdriver.common.keys import Keys
-#from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 import datetime
 import time
 import openpyxl as excel
@@ -32,8 +32,11 @@ targets = readContacts("contacts.xlsx")
 print(targets)
 '''
 # Driver to open a browser
+options = webdriver.ChromeOptions()
+options.add_argument(argument="--user-data-dir="+os.path.expanduser("~")+"/.config/google-chrome")
 executable_path = os.path.expanduser("~")+"/Projects/whatsAppBot/chromedriver_linux64/chromedriver"
-driver = webdriver.Chrome(executable_path=executable_path)
+driver = webdriver.Chrome(executable_path=executable_path, options=options)
+
 
 #link to open a site
 driver.get("https://web.whatsapp.com/")
@@ -43,7 +46,10 @@ driver.get("https://web.whatsapp.com/")
 # note this time is being used below also
 wait = WebDriverWait(driver, 10)
 wait5 = WebDriverWait(driver, 5)
-input("Scan the QR code and then press Enter")
+
+#inp_xpath = "//div[@contenteditable='true']"
+#input_box = wait.until(EC.presence_of_element_located((
+#By.XPATH, inp_xpath)))
 '''
 # Message to send list
 # 1st Parameter: Hours in 0-23
