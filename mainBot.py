@@ -3,13 +3,14 @@
 
 # Import required packages
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
+#from selenium.webdriver.support.ui import WebDriverWait
+#from selenium.webdriver.support import expected_conditions as EC
+#from selenium.webdriver.common.keys import Keys
+#from selenium.webdriver.common.by import By
 import datetime
 import time
 import openpyxl as excel
+import os
 '''
 # function to read contacts from a text file
 def readContacts(fileName):
@@ -31,7 +32,8 @@ targets = readContacts("contacts.xlsx")
 print(targets)
 '''
 # Driver to open a browser
-driver = webdriver.Chrome(executable_path="/home/rahul/whatsAppBot/chromedriver_linux64")
+executable_path = os.path.expanduser("~")+"/Projects/whatsAppBot/chromedriver_linux64/chromedriver"
+driver = webdriver.Chrome(executable_path=executable_path)
 
 #link to open a site
 driver.get("https://web.whatsapp.com/")
