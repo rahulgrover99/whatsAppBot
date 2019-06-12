@@ -20,9 +20,6 @@ driver.get("https://web.whatsapp.com/")
 wait = WebDriverWait(driver, 10)
 wait5 = WebDriverWait(driver, 5)
 
-#TODO make based on target
-data = {"name":"Rahul","number":"+91 98143 11067","message":"Gae"}
-
 def send_whatsapp_message(data):
 
     x_arg = "//span[contains(@title,'"+data["number"]+"')]"
@@ -75,7 +72,7 @@ def index():
         send_whatsapp_message(data)
         return render_template("index.html")
     except:
-
+        error = "missing argument (name, number, or message)"
         return render_template("error.html", error=error)
 
 if __name__ == "__main__":
