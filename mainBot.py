@@ -12,7 +12,7 @@ import time
 import openpyxl as excel
 import os
 
-msgToSend = [12, 32, 0, "ur mum gae", "https://www.youtube.com/watch?v=dQw4w9WgXcQ"]
+msgToSend = [12, 32, 0, "Muh me le", "Gaandu"]
 # Driver to open a browser
 options = webdriver.ChromeOptions()
 options.add_argument(argument="--user-data-dir="+os.path.expanduser("~")+"/.config/google-chrome")
@@ -28,7 +28,7 @@ driver.get("https://web.whatsapp.com/")
 # note this time is being used below also
 wait = WebDriverWait(driver, 10)
 wait5 = WebDriverWait(driver, 5)
-target = "Chai Knees"
+target = "Gurgaon Archit"
 #TODO make based on target
 x_arg = "//span[contains(@title,'"+target+"')]"
 
@@ -63,7 +63,7 @@ time.sleep(1)
 
 # Send message
 # taeget is your target Name and msgToSend is you message
-for i in range(0,2):
+for i in range(0,10):
     input_box.send_keys("Hello, " + target + "."+ Keys.SHIFT + Keys.ENTER + msgToSend[3])
     input_box.send_keys(Keys.ENTER)
     input_box.send_keys(msgToSend[4])
