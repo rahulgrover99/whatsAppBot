@@ -7,59 +7,60 @@ import datetime
 import time
 import openpyxl as excel
 import os
-
-#TODO make based on target
-data = {"name":"Rahul","number":"+91 98143 11067","message":"Gae"}
+from flask import (
+    flash, g, redirect, render_template, request, url_for, Flask, send_from_directory
+)
+app = Flask(__name__)
 
 options = webdriver.ChromeOptions()
 options.add_argument(argument="--user-data-dir="+os.path.expanduser("~")+"/.config/google-chrome")
 executable_path = os.path.expanduser("~")+"/Projects/whatsAppBot/chromedriver_linux64/chromedriver"
 driver = webdriver.Chrome(executable_path=executable_path, options=options)
-
 driver.get("https://web.whatsapp.com/")
-
 wait = WebDriverWait(driver, 10)
 wait5 = WebDriverWait(driver, 5)
 
+#TODO make based on target
+data = {"name":"Rahul","number":"+91 98143 11067","message":"Gae"}
 
-x_arg = "//span[contains(@title,'"+data["number"]+"')]"
-x_arg_name = "//span[contains(@title,'"+data["name"]+"')]"
+def send_whatsapp_message(data):
 
-searBoxPath = '//*[@id="input-chatlist-search"]'
+    x_arg = "//span[contains(@title,'"+data["number"]+"')]"
+    x_arg_name = "//span[contains(@title,'"+data["name"]+"')]"
 
-time.sleep(4)
+    searBoxPath = '//*[@id="input-chatlist-search"]'
 
-# Click the search button
-try:
-    driver.find_element_by_xpath("//button[contains(@class,'_1XCAr')]").click()
-except:
-    pass
-# driver.find_element_by_class_name('_1XCAr').click()
-# driver.find_element_by_css_selector('button._1XCAr').click()
+    time.sleep(10)
 
-inputSearchBox = driver.find_element_by_xpath("//input[contains(@title,'Search or start new chat')]")
-inputSearchBox.send_keys(data["number"])
+    # Click the search button
+    try:
+        driver.find_element_by_xpath("//button[contains(@class,'_1XCAr')]").click()
+    except:
+        pass
 
-print('Target Searched')
-# Increase the time if searching a contact is taking a long time
-time.sleep(2)
+    inputSearchBox = driver.find_element_by_xpath("//input[contains(@title,'Search or start new chat')]")
+    inputSearchBox.send_keys(data["number"])
 
-try:
-    driver.find_element_by_xpath(x_arg).click()
-except:
-    driver.find_element_by_xpath(x_arg_name).click()
+    print('Target Searched')
 
-print("Target Successfully Selected")
-time.sleep(2)
+    # Increase the time if searching a contact is taking a long time
+    time.sleep(2)
 
-# Select the input box
-inp_xpath = "//div[@contenteditable='true']"
-input_box = wait.until(EC.presence_of_element_located((
-    By.XPATH, inp_xpath)))
-time.sleep(1)
+    try:
+        driver.find_element_by_xpath(x_arg).click()
+    except:
+        driver.find_element_by_xpath(x_arg_name).click()
 
-input_box.send_keys("Hello, " + data["name"] + "." + Keys.ENTER + data["message"])
-input_box.send_keys(Keys.ENTER)
+    print("Target Successfully Selected")
+    time.sleep(2)
 
-time.sleep(5)
+    # Select the input box
+    inp_xpath = "//div[@contenteditable='true']"
+    input_box = wait.until(EC.presence_of_element_located((
+        By.XPATH, inp_xpath)))
+    time.sleep(1)
 
+    input_box.send_keys("Hello, " + data["name"] + "." + Keys.ENTER + data["message"])
+    input_box.send_keys(Keys.ENTER)
+
+send_whatsapp_message(data)
