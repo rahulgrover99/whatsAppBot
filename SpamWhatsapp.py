@@ -9,7 +9,7 @@ import openpyxl as excel
 import os
 
 #TODO make based on target
-data = {"name":"Rahul","number":"+91 98143 11067","message":"gae"}
+data = {"name":"Rahul","number":"+91 98143 11067","message":"Gae"}
 
 options = webdriver.ChromeOptions()
 options.add_argument(argument="--user-data-dir="+os.path.expanduser("~")+"/.config/google-chrome")
@@ -30,7 +30,10 @@ searBoxPath = '//*[@id="input-chatlist-search"]'
 time.sleep(4)
 
 # Click the search button
-driver.find_element_by_xpath("//button[contains(@class,'_1XCAr')]").click()
+try:
+    driver.find_element_by_xpath("//button[contains(@class,'_1XCAr')]").click()
+except:
+    pass
 # driver.find_element_by_class_name('_1XCAr').click()
 # driver.find_element_by_css_selector('button._1XCAr').click()
 
