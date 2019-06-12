@@ -63,4 +63,20 @@ def send_whatsapp_message(data):
     input_box.send_keys("Hello, " + data["name"] + "." + Keys.ENTER + data["message"])
     input_box.send_keys(Keys.ENTER)
 
-send_whatsapp_message(data)
+#send_whatsapp_message(data)
+
+@app.route("/")
+def index():
+    try:
+        name = request.args.get('name')
+        number = request.args.get('number')
+        message = request.args.get('message')
+        data = {"name": name, "number": number,"message": message}
+        send_whatsapp_message(data)
+        return render_template("index.html")
+    except:
+        return render_template("error.html")
+
+if __name__ == "__main__":
+    app.run()
+
