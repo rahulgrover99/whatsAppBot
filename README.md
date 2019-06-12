@@ -36,7 +36,7 @@ Step 3: Extract the downloaded driver onto a folder
 Step 4: Set path variable to the environment. Paste this command to the terminal
 ```sh
 $ export PATH=$PATH:/home/path/to/the/driver/folder/
-Eg: $ export PATH=$PATH:/home/harshit/Desktop/WhatsAppBot
+Eg: $ export PATH=$PATH:/home/rahul/Desktop/whatsAppBot
 ```
 Step 5: run mainBot.py using Python3
 ```sh
