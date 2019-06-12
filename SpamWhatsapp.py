@@ -75,7 +75,8 @@ def index():
         send_whatsapp_message(data)
         return render_template("index.html")
     except:
-        return render_template("error.html")
+
+        return render_template("error.html", error=error)
 
 if __name__ == "__main__":
     app.run()
