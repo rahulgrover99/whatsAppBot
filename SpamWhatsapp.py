@@ -59,6 +59,9 @@ def send_whatsapp_message(data):
 
     input_box.send_keys("Hello, " + data["name"] + "." + Keys.ENTER + data["message"])
     input_box.send_keys(Keys.ENTER)
+    for i in range(0,int(data["loopnumber"])):
+        input_box.send_keys(data["message"])
+        input_box.send_keys(Keys.ENTER)
 
 #send_whatsapp_message(data)
 
@@ -68,7 +71,8 @@ def index():
         name = request.args.get('name')
         number = request.args.get('number')
         message = request.args.get('message')
-        data = {"name": name, "number": number,"message": message}
+        loopnumber = request.args.get('loopnumber')
+        data = {"name": name, "number": number,"message": message,"loopnumber":loopnumber}
         send_whatsapp_message(data)
         return render_template("index.html")
     except:
