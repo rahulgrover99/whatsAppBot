@@ -59,6 +59,4 @@ input_box.send_keys("Hello, " + data["name"] + "." + Keys.ENTER + data["message"
 input_box.send_keys(Keys.ENTER)
 
 time.sleep(5)
-print("Successfully Send Message to : "+ target + '\n')
-time.sleep(0.5)
 
