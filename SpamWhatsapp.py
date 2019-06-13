@@ -17,7 +17,7 @@ app = Flask(__name__)
 os.environ['MOZ_HEADLESS'] = '1'
 
 #binary = FirefoxBinary('/home/aviwad/Projects/whatsAppBot/geckodriver')
-driver = webdriver.Firefox(executable_path='/home/aviwad/Projects/whatsAppBot/geckodriver')
+driver = webdriver.Firefox(executable_path='/home/ubuntu/RahulGrover/geckodriver')
 #options = webdriver.ChromeOptions()
 #options.add_argument(argument="--kiosk")
 #options.add_argument(argument='--window-size=1366x768');
