@@ -25,8 +25,6 @@ def send_whatsapp_message(data):
     x_arg = "//span[contains(@title,'"+data["number"]+"')]"
     x_arg_name = "//span[contains(@title,'"+data["name"]+"')]"
 
-    searBoxPath = '//*[@id="input-chatlist-search"]'
-
     time.sleep(10)
 
     # Click the search button
@@ -60,7 +58,7 @@ def send_whatsapp_message(data):
     input_box.send_keys("Hello, " + data["name"] + "." + Keys.ENTER + data["message"])
     input_box.send_keys(Keys.ENTER)
 
-#send_whatsapp_message(data)
+# send_whatsapp_message(data)
 
 @app.route("/")
 def index():

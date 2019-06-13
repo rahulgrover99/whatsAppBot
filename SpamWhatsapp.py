@@ -10,6 +10,7 @@ import os
 from flask import (
     flash, g, redirect, render_template, request, url_for, Flask, send_from_directory
 )
+
 app = Flask(__name__)
 
 options = webdriver.ChromeOptions()
@@ -28,14 +29,14 @@ def send_whatsapp_message(data):
     x_arg = "//span[contains(@title,'"+data["number"]+"')]"
     x_arg_name = "//span[contains(@title,'"+data["name"]+"')]"
 
-    searBoxPath = '//*[@id="input-chatlist-search"]'
-
+    # searBoxPath = '//*[@id="input-chatlist-search"]'
     time.sleep(10)
 
     # Click the search button
     try:
         driver.find_element_by_xpath("//button[contains(@class,'_1XCAr')]").click()
     except:
+        print("Search button not found! Check xpath")
         pass
 
     inputSearchBox = driver.find_element_by_xpath("//input[contains(@title,'Search or start new chat')]")
@@ -46,6 +47,7 @@ def send_whatsapp_message(data):
     # Increase the time if searching a contact is taking a long time
     time.sleep(2)
 
+    # Finding the contact
     try:
         driver.find_element_by_xpath(x_arg).click()
         print('number clicked')
@@ -65,7 +67,7 @@ def send_whatsapp_message(data):
 
     input_box.send_keys("Hello, " + data["name"] + "." + Keys.ENTER + data["message"])
     input_box.send_keys(Keys.ENTER)
-    for i in range(0,int(data["loopnumber"])):
+    for i in range(int(data["loopnumber"])):
         input_box.send_keys(data["message"])
         input_box.send_keys(Keys.ENTER)
     '''
