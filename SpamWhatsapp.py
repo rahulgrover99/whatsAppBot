@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import datetime
 import time
 import openpyxl as excel
@@ -13,13 +14,17 @@ from flask import (
 
 app = Flask(__name__)
 
-options = webdriver.ChromeOptions()
-options.add_argument(argument="--kiosk")
-options.add_argument(argument='--window-size=1366x768');
-options.add_argument(argument="--start-maximized")
-options.add_argument(argument="--user-data-dir="+os.path.expanduser("~")+"/.config/google-chrome")
-executable_path = os.path.expanduser("~")+"/Projects/whatsAppBot/chromedriver_linux64/chromedriver"
-driver = webdriver.Chrome(executable_path=executable_path, options=options)
+os.environ['MOZ_HEADLESS'] = '1'
+
+#binary = FirefoxBinary('/home/aviwad/Projects/whatsAppBot/geckodriver')
+driver = webdriver.Firefox(executable_path='/home/aviwad/Projects/whatsAppBot/geckodriver')
+#options = webdriver.ChromeOptions()
+#options.add_argument(argument="--kiosk")
+#options.add_argument(argument='--window-size=1366x768');
+#options.add_argument(argument="--start-maximized")
+#options.add_argument(argument="--user-data-dir="+os.path.expanduser("~")+"/.config/google-chrome")
+#executable_path = os.path.expanduser("~")+"/Projects/whatsAppBot/chromedriver_linux64/chromedriver"
+#driver = webdriver.Chrome(executable_path=executable_path, options=options)
 driver.get("https://web.whatsapp.com/")
 wait = WebDriverWait(driver, 10)
 wait5 = WebDriverWait(driver, 5)
